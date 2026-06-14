@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<div class="site-hero">
+  <h1>{{ site.title | downcase }}<span class="cursor" aria-hidden="true">_</span></h1>
+  <p class="hero-sub">
+    <span>@{{ site.author.handle | default: site.author.name }}</span>
+    &nbsp;·&nbsp;
+    <span>{{ site.tagline | default: "IT blog" }}</span>
+  </p>
+</div>
+
+<p class="section-label">recent posts</p>
+
+<ul class="post-list">
+  {%- for post in site.posts -%}
+  <li class="post-item">
+    <a href="{{ post.url | relative_url }}">
+      <span class="post-date">{{ post.date | date: "[%Y-%m-%d]" }}</span>
+      <span class="post-title">{{ post.title }}</span>
+      {%- if post.tags and post.tags.size > 0 -%}
+        <span class="post-tag {{ post.tags[0] | downcase | replace: ' ', '-' }}">{{ post.tags[0] | downcase }}</span>
+      {%- else -%}
+        <span></span>
+      {%- endif -%}
+    </a>
+  </li>
+  {%- endfor -%}
+</ul>

@@ -1,0 +1,29 @@
+<header class="window-chrome">
+  <div class="window-topbar">
+    <span class="dot red"   aria-hidden="true"></span>
+    <span class="dot yellow" aria-hidden="true"></span>
+    <span class="dot green"  aria-hidden="true"></span>
+    <span class="window-title">{{ site.title | downcase }}.blog — zsh</span>
+  </div>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <span class="prompt" aria-hidden="true">
+      <span class="user">{{ site.author.handle | default: "user" }}</span>@<span class="user">{{ site.title | downcase | remove: ' ' }}</span>:<span class="path">~</span> $
+    </span>
+
+    <ul class="nav-links">
+      <li>
+        <a href="{{ '/' | relative_url }}"
+           {% if page.url == '/' or page.layout == 'post' %}class="active" aria-current="page"{% endif %}>
+          ./index
+        </a>
+      </li>
+      <li>
+        <a href="{{ '/about' | relative_url }}"
+           {% if page.url contains '/about' %}class="active" aria-current="page"{% endif %}>
+          ./about
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,43 +1,47 @@
-title: rootaccess.blog
-description: Notes from the help desk, the home lab, and the command line.
-url: "https://rootaccess.blog"
-baseurl: ""
+# ============================================================
+# rootaccess.blog — Jekyll Configuration
+# ============================================================
 
+title:       rootaccess
+tagline:     "IT notes from the trenches"
+description: "Practical IT guides covering Linux, networking, homelab, DevOps, and security."
+url:         "https://rootaccess.blog"
+baseurl:     ""
+lang:        en
+
+# -- Author
 author:
-  name: Austin
-  email: ""
+  name:   "Your Name"
+  handle: "yourhandle"      # used in the nav prompt: yourhandle@rootaccess:~ $
+  email:  "you@rootaccess.blog"
+  github: "yourhandle"
 
-# Build
-markdown: kramdown
+# -- Build
+markdown:    kramdown
 highlighter: rouge
-permalink: /posts/:year/:month/:day/:title/
+permalink:   /:year/:month/:day/:title/
 
 kramdown:
-  input: GFM
+  input:          GFM
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
 
-# Plugins
+# -- Sass
+sass:
+  sass_dir: _sass
+  style:    compressed
+
+# -- Plugins
 plugins:
   - jekyll-feed
-  - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-sitemap
 
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-
-# Exclude from build
+# -- Exclude from build
 exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
-  - deploy.sh
+  - .git
   - node_modules
-
-# Collections / tags
-tag_page_layout: tag
-tag_page_dir: tag

@@ -2,25 +2,52 @@
 layout: default
 ---
 
-<a class="back-link" href="{{ '/' | relative_url }}">back to posts</a>
-
 <article>
-  <div class="post-header">
-    <div class="post-meta-line">
-      <span class="post-date">{{ page.date | date: "%b %-d, %Y" | downcase }}</span>
-      {% if page.tags.size > 0 %}
-        {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/tag/' | append: tag | relative_url }}">#{{ tag }}</a>
-        {% endfor %}
-      {% endif %}
+  <header class="post-header">
+    <div class="post-header-meta">
+      <span>{{ page.date | date: "[%Y-%m-%d]" }}</span>
+      {%- if page.tags and page.tags.size > 0 -%}
+        {%- for tag in page.tags -%}
+          <span class="post-tag {{ tag | downcase | replace: ' ', '-' }}">{{ tag | downcase }}</span>
+        {%- endfor -%}
+      {%- endif -%}
+      <span>{{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
     </div>
     <h1>{{ page.title }}</h1>
-    {% if page.excerpt %}
-      <p style="font-size:15px; color:var(--text-muted); margin-top:0.75rem; max-width:600px;">{{ page.excerpt | strip_html }}</p>
-    {% endif %}
-  </div>
+    {%- if page.description -%}
+      <p class="hero-sub"><span>{{ page.description }}</span></p>
+    {%- endif -%}
+  </header>
 
-  <div class="post-body">
+  <div class="post-content">
     {{ content }}
   </div>
 </article>
+
+<!-- Post navigation -->
+{%- assign prev_post = page.previous_post -%}
+{%- assign next_post = page.next_post -%}
+
+{%- if site.posts.size > 1 -%}
+  {%- assign post_count = site.posts.size -%}
+  {%- for i in (0..post_count) -%}
+    {%- if site.posts[i].url == page.url -%}
+      {%- assign prev_post = site.posts[i | plus: 1] -%}
+      {%- if i > 0 -%}
+        {%- assign next_post = site.posts[i | minus: 1] -%}
+      {%- endif -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<nav class="post-nav" aria-label="Post navigation">
+  {%- if prev_post -%}
+    <a href="{{ prev_post.url | relative_url }}" class="prev">{{ prev_post.title }}</a>
+  {%- else -%}
+    <span></span>
+  {%- endif -%}
+  {%- if next_post -%}
+    <a href="{{ next_post.url | relative_url }}" class="next">{{ next_post.title }}</a>
+  {%- endif -%}
+</nav>
