@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rootaccess — maintenance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .terminal {
+      width: 100%;
+      max-width: 580px;
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .topbar {
+      background: #1c2128;
+      border-bottom: 1px solid #21262d;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red    { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green  { background: #28c840; }
+    .window-label {
+      flex: 1;
+      text-align: center;
+      font-size: 11px;
+      color: #484f58;
+      letter-spacing: 0.05em;
+    }
+
+    .body {
+      padding: 28px 32px 36px;
+    }
+
+    .prompt-line {
+      font-size: 13px;
+      color: #484f58;
+      margin-bottom: 24px;
+    }
+    .prompt-line .user { color: #00ff41; }
+    .prompt-line .path { color: #58a6ff; }
+
+    .output {
+      margin-bottom: 28px;
+    }
+
+    .output-line {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #8b949e;
+    }
+
+    .output-line .label {
+      color: #484f58;
+      margin-right: 12px;
+    }
+
+    .output-line .value { color: #e6edf3; }
+    .output-line .green { color: #00ff41; }
+    .output-line .blue  { color: #58a6ff; }
+
+    .progress-section {
+      margin: 24px 0;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      color: #484f58;
+      margin-bottom: 8px;
+      letter-spacing: 0.08em;
+    }
+    .progress-label::before { content: '# '; color: #00ff41; }
+
+    .progress-bar-outer {
+      height: 4px;
+      background: #21262d;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: #00ff41;
+      border-radius: 2px;
+      animation: progress-pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes progress-pulse {
+      0%   { width: 15%; opacity: 1; }
+      50%  { width: 80%; opacity: 0.7; }
+      100% { width: 15%; opacity: 1; }
+    }
+
+    .blink {
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .footer-line {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #21262d;
+      font-size: 11px;
+      color: #484f58;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-line a {
+      color: #484f58;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-line a:hover { color: #8b949e; }
+  </style>
+</head>
+<body>
+
+  <div class="terminal">
+    <div class="topbar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="window-label">rootaccess.blog — zsh</span>
+    </div>
+
+    <div class="body">
+      <p class="prompt-line">
+        <span class="user">user</span>@<span class="user">rootaccess</span>:<span class="path">~</span> $ curl -I https://rootaccess.blog
+      </p>
+
+      <div class="output">
+        <p class="output-line"><span class="label">HTTP/2</span> <span class="value">503 Service Unavailable</span></p>
+        <p class="output-line"><span class="label">server:</span> <span class="value">apache/2.4</span></p>
+        <p class="output-line"><span class="label">content-type:</span> <span class="value">text/html</span></p>
+        <p class="output-line"><span class="label">retry-after:</span> <span class="value">3600</span></p>
+        <p class="output-line"><span class="label">status:</span> <span class="green">performing scheduled maintenance</span></p>
+      </div>
+
+      <div class="progress-section">
+        <p class="progress-label">system update in progress</p>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner"></div>
+        </div>
+      </div>
+
+      <p class="output-line" style="margin-top: 20px;">
+        rootaccess.blog will be back shortly.<span class="blink">_</span>
+      </p>
+
+      <div class="footer-line">
+        <span>rootaccess.blog</span>
+        <a href="mailto:you@rootaccess.blog">you@rootaccess.blog</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
