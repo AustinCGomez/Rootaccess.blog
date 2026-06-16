@@ -8,11 +8,11 @@ description: The person behind rootaccess.blog
 <div class="about-header">
   <div class="about-avatar" aria-hidden="true">RA</div>
   <div>
-    <h1 class="about-name">Your Name</h1>
+    <h1 class="about-name">Austin Gomez</h1>
     <p class="about-role">$ whoami → sysadmin · homelab enthusiast · linux nerd</p>
     <p class="about-meta">
       Huntsville, AL &nbsp;·&nbsp;
-      10+ years in IT &nbsp;·&nbsp;
+      2+ years in IT &nbsp;·&nbsp;
       writing since 2021
     </p>
   </div>
@@ -22,14 +22,14 @@ description: The person behind rootaccess.blog
 
 <div class="about-bio">
   <p>
-    By day I work in IT infrastructure — servers, networks, the whole stack.
+    By day I work in IT Help Desk.
     By night I run a homelab where I break things on purpose and write about
     what I learn.
   </p>
   <p>
     rootaccess.blog is where those notes live: practical guides, lessons learned
     the hard way, and honest write-ups on the tools I use every week. No
-    sponsored posts, no fluff — just real IT work.
+    sponsored posts, no fluff — just real IT fun.
   </p>
 </div>
 
